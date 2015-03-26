@@ -19,9 +19,10 @@ public class CallProcedureDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Connection con = null;
 		try {
-			Connection con = ConnectionFactory.create();
-			// CallableStatement是专门用来调用存储过程的
+			con = ConnectionFactory.create();
+			// CallableStatement 是专门用来调用存储过程的
 			CallableStatement cstmt = con.prepareCall("CALL age_pro (?, ?)");
 			/*
 			 * age_pro存储过程定义：
@@ -36,9 +37,11 @@ public class CallProcedureDemo {
 			cstmt.setInt(1, -1);// 设置输入参数值
 			cstmt.registerOutParameter(2, Types.VARCHAR);// 注册输出参数类型
 			cstmt.executeQuery();// 调用存储过程
+			
 			String errorinfo = cstmt.getString(2);// 获取输出参数的值
 			cstmt.close();
 			System.out.println(errorinfo);
+			
 			/*
 			 * 若调用存储过程时报了下面的错误： 
 			 * ERROR 1370 (42000): execute command denied to user backupAccount@'localhost' for routine 'databaseName.spName' 
@@ -50,6 +53,14 @@ public class CallProcedureDemo {
 			 */
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }

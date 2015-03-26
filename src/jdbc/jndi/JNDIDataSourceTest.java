@@ -24,6 +24,7 @@ public class JNDIDataSourceTest {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		try {
 			/**
@@ -37,6 +38,7 @@ public class JNDIDataSourceTest {
 			 */
 			String name = "java:comp/env/jdbc/mydb";// 数据源配置信息的位置
 			DataSource dataSource = (DataSource)jndiContext.lookup(name);
+			
 			Connection connection = dataSource.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();

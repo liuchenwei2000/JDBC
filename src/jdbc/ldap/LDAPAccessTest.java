@@ -26,11 +26,13 @@ public class LDAPAccessTest {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		String username = "user";
 		String password = "12345678";
+		
 		// 存储访问LDAP服务器的用户名/密码
-		Hashtable env = new Hashtable();
+		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.SECURITY_PRINCIPAL, username);
 		env.put(Context.SECURITY_CREDENTIALS, password);
 		

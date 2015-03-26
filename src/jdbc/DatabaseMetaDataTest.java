@@ -13,11 +13,11 @@ import java.sql.SQLException;
 /**
  * 数据库元数据
  * <p>
- * JDBC可以提供关于数据库结构和表的详细信息。
+ * JDBC可以提供关于数据库结构和表的详细信息：
  * 例如可以获取某个数据库的所有表的列表，也可以获得某个表中所有列的名称及其数据类型。
  * 这些数据库的结构信息对编写数据库工具的程序员而言是极其有用的。
  * <p>
- * 描述数据库或其组成部分的数据称为元数据(区别于那些存在数据库中的实际数据)。
+ * 描述数据库或其组成部分的数据称为元数据（区别于那些存在数据库中的实际数据）。
  * 
  * @author 刘晨伟
  * 
@@ -44,12 +44,11 @@ public class DatabaseMetaDataTest {
 		// 表类型名称：典型的类型为 "TABLE"、"VIEW"、"SYSTEM TABLE"、"GLOBAL TEMPORARY"、"LOCAL TEMPORARY"、"ALIAS" 和 "SYNONYM"。 
 		String[] types = new String[]{"TABLE"};
 		/**
-		 * 下面的方法会返回数据库中所有的表信息，结果集包括五列：
+		 * 下面的方法会返回数据库中所有的表信息，结果集包括四列：
 		 * TABLE_CAT：表目录，对应参数中的catalog。
 		 * TABLE_SCHEM：表结构模式，对应参数中的schemaPattern。
 		 * TABLE_NAME：表名，对应参数中的tableNamePattern。
 		 * TABLE_TYPE：表类型，对应参数中的types。
-		 * REMARKS：表的注释
 		 */
 		ResultSet tables = meta.getTables(catalog, schemaPattern, tableNamePattern, types);
 		// 打印结果集原信息，可和上面的表信息对比
@@ -72,7 +71,7 @@ public class DatabaseMetaDataTest {
 		meta.nullPlusNonNullIsNull();
 		/**
 		 * 这些方法主要针对有特殊要求的高级客户，尤其是那些需要编写涉及多个数据库且具备可移植性的程序员。
-		 * 比如下面的方法可以获知该数据库是否支持可滚动的结果集
+		 * 比如下面的方法可以获知该数据库是否支持可滚动的结果集。
 		 */
 		meta.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE);
 		
@@ -108,7 +107,7 @@ public class DatabaseMetaDataTest {
 	}
 
 	/**
-	 * 关于预备语句(PreparedStatement)参数的元数据
+	 * 关于预编译语句(PreparedStatement)参数的元数据
 	 */
 	public static void showDatabaseMetaData(PreparedStatement ps) throws SQLException{
 		

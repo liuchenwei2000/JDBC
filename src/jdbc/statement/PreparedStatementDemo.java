@@ -1,10 +1,11 @@
-package jdbc.statement;
 /**
  * 
  */
+package jdbc.statement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import jdbc.ConnectionFactory;
@@ -37,17 +38,31 @@ public class PreparedStatementDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Connection con = null;
 		try {
-			Connection con =  ConnectionFactory.create();
+			con = ConnectionFactory.create();
+			// 创建普通的 Statement
 			Statement s = con.createStatement();
+			// 创建 PreparedStatement
 			PreparedStatement ps = con.prepareStatement(SQL);
 			// 根据?的不同类型调用相符的setXXX方法，第一个参数是?的位置，第二个参数是真正的值
 			ps.setString(1, "liucw1");
 			ps.setInt(2, 27);
 			// 此时执行各种操作已经不需要参数了
 			ps.executeQuery();
+
+			s.close();
+			ps.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }
