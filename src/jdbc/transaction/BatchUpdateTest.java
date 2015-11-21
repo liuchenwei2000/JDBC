@@ -10,13 +10,13 @@ import java.sql.Statement;
 import jdbc.ConnectionFactory;
 
 /**
- * ÅúÁ¿¸üÐÂÊ¾Àý
+ * æ‰¹é‡æ›´æ–°ç¤ºä¾‹
  * <p>
- * Èç¹ûÐèÒªÖ´ÐÐ¶àÖÖ¸üÐÂ²Ù×÷(Èçinsert¡¢update¡¢delete)£¬¿ÉÒÔÊ¹ÓÃÅúÁ¿¸üÐÂµÄ·½·¨À´Ìá¸ßÐÔÄÜ¡£
+ * å¦‚æžœéœ€è¦æ‰§è¡Œå¤šç§æ›´æ–°æ“ä½œ(å¦‚insertã€updateã€delete)ï¼Œå¯ä»¥ä½¿ç”¨æ‰¹é‡æ›´æ–°çš„æ–¹æ³•æ¥æé«˜æ€§èƒ½ã€‚
  *
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  *
- * ´´½¨ÈÕÆÚ£º2013-6-15
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-15
  */
 public class BatchUpdateTest {
 
@@ -27,40 +27,40 @@ public class BatchUpdateTest {
 		Connection con = null;
 		try {
 			con = ConnectionFactory.create();
-			// ¼ì²éÊý¾Ý¿âÊÇ·ñÖ§³ÖÅúÁ¿¸üÐÂÕâÖÖÌØÐÔ
+			// æ£€æŸ¥æ•°æ®åº“æ˜¯å¦æ”¯æŒæ‰¹é‡æ›´æ–°è¿™ç§ç‰¹æ€§
 			boolean isSupport = con.getMetaData().supportsBatchUpdates();
 			/*
-			 * ÎªÁËÔÚÅúÁ¿Ä£Ê½ÏÂÕýÈ·´¦Àí´íÎó£¬±ØÐë½«ÅúÁ¿Ö´ÐÐµÄ²Ù×÷ÊÓÎªµ¥¸öÊÂÎñ¡£
-			 * Èç¹ûÅúÁ¿¸üÐÂÔÚÖ´ÐÐ¹ý³ÌÖÐÊ§°Ü£¬ÄÇÃ´±ØÐë½«Ëü»Ø¹öµ½ÅúÁ¿²Ù×÷¿ªÊ¼Ö®Ç°µÄ×´Ì¬¡£
+			 * ä¸ºäº†åœ¨æ‰¹é‡æ¨¡å¼ä¸‹æ­£ç¡®å¤„ç†é”™è¯¯ï¼Œå¿…é¡»å°†æ‰¹é‡æ‰§è¡Œçš„æ“ä½œè§†ä¸ºå•ä¸ªäº‹åŠ¡ã€‚
+			 * å¦‚æžœæ‰¹é‡æ›´æ–°åœ¨æ‰§è¡Œè¿‡ç¨‹ä¸­å¤±è´¥ï¼Œé‚£ä¹ˆå¿…é¡»å°†å®ƒå›žæ»šåˆ°æ‰¹é‡æ“ä½œå¼€å§‹ä¹‹å‰çš„çŠ¶æ€ã€‚
 			 * 
-			 * »ù±¾²½ÖèÈçÏÂ£º
-			 * 1£¬¹Ø±Õ×Ô¶¯Ìá½»Ä£Ê½¡£
-			 * 2£¬ÊÕ¼¯ÅúÁ¿²Ù×÷¡£
-			 * 3£¬Ö´ÐÐ²¢Ìá½»ÅúÁ¿²Ù×÷¡£
-			 * 4£¬»Ö¸´×î³õµÄ×Ô¶¯Ìá½»Ä£Ê½¡£
+			 * åŸºæœ¬æ­¥éª¤å¦‚ä¸‹ï¼š
+			 * 1ï¼Œå…³é—­è‡ªåŠ¨æäº¤æ¨¡å¼ã€‚
+			 * 2ï¼Œæ”¶é›†æ‰¹é‡æ“ä½œã€‚
+			 * 3ï¼Œæ‰§è¡Œå¹¶æäº¤æ‰¹é‡æ“ä½œã€‚
+			 * 4ï¼Œæ¢å¤æœ€åˆçš„è‡ªåŠ¨æäº¤æ¨¡å¼ã€‚
 			 */
 			if(isSupport){
-				boolean autoCommit = con.getAutoCommit();// ±¸·ÝÊÇ·ñ×Ô¶¯Ìá½»ÊôÐÔ
-				// ¹Ø±Õ×Ô¶¯Ìá½»Ä£Ê½
+				boolean autoCommit = con.getAutoCommit();// å¤‡ä»½æ˜¯å¦è‡ªåŠ¨æäº¤å±žæ€§
+				// å…³é—­è‡ªåŠ¨æäº¤æ¨¡å¼
 				con.setAutoCommit(false);
 				/*
-				 * ÔÚÊ¹ÓÃÅúÁ¿¸üÐÂµÄÊ±ºò£¬Ò»Åú²Ù×÷×÷ÎªÒ»¸öÃüÁîÐòÁÐ½«Í¬Ê±±»ÊÕ¼¯ºÍÌá½»¡£
-				 * ´¦ÓÚÍ¬Ò»ÅúÖÐµÄÃüÁî¿ÉÒÔÊÇinsert¡¢updateºÍdelete£¬Ò²¿ÉÒÔÊÇDDLÃüÁî£¬Èçcreate table¡¢drop table
-				 * ²»¹ý²»ÄÜÔÚÅúÁ¿´¦ÀíÖÐÌí¼ÓselectÃüÁî£¬ÒòÎªÖ´ÐÐselectÓï¾ä½«»á·µ»ØÒ»¸ö½á¹û¼¯¡£
+				 * åœ¨ä½¿ç”¨æ‰¹é‡æ›´æ–°çš„æ—¶å€™ï¼Œä¸€æ‰¹æ“ä½œä½œä¸ºä¸€ä¸ªå‘½ä»¤åºåˆ—å°†åŒæ—¶è¢«æ”¶é›†å’Œæäº¤ã€‚
+				 * å¤„äºŽåŒä¸€æ‰¹ä¸­çš„å‘½ä»¤å¯ä»¥æ˜¯insertã€updateå’Œdeleteï¼Œä¹Ÿå¯ä»¥æ˜¯DDLå‘½ä»¤ï¼Œå¦‚create tableã€drop table
+				 * ä¸è¿‡ä¸èƒ½åœ¨æ‰¹é‡å¤„ç†ä¸­æ·»åŠ selectå‘½ä»¤ï¼Œå› ä¸ºæ‰§è¡Œselectè¯­å¥å°†ä¼šè¿”å›žä¸€ä¸ªç»“æžœé›†ã€‚
 				 */
 				Statement st = con.createStatement();
 				
 				for (int i = 0; i < 10; i++) {
 					String sql = "update table" + i + " set column" + i + "=" + i;
-					// Ä£Äâ¼ÓÈëÅúÁ¿²Ù×÷(10¸ö)
+					// æ¨¡æ‹ŸåŠ å…¥æ‰¹é‡æ“ä½œ(10ä¸ª)
 					st.addBatch(sql);
 				}
-				// Ö´ÐÐÅúÁ¿¸üÐÂ£¬·µ»ØÊý×éµÄÔªËØÊÇÃ¿¸ö¸üÐÂËùÓ°ÏìµÄÐÐÊý
+				// æ‰§è¡Œæ‰¹é‡æ›´æ–°ï¼Œè¿”å›žæ•°ç»„çš„å…ƒç´ æ˜¯æ¯ä¸ªæ›´æ–°æ‰€å½±å“çš„è¡Œæ•°
 				@SuppressWarnings("unused")
 				int[] rows = st.executeBatch();
 				
 				con.commit();
-				con.setAutoCommit(autoCommit);// »Ö¸´ÊÇ·ñ×Ô¶¯Ìá½»ÊôÐÔ
+				con.setAutoCommit(autoCommit);// æ¢å¤æ˜¯å¦è‡ªåŠ¨æäº¤å±žæ€§
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

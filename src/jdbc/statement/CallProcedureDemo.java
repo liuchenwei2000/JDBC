@@ -7,11 +7,11 @@ import java.sql.Types;
 import jdbc.ConnectionFactory;
 
 /**
- * µ÷ÓÃ´æ´¢¹ý³ÌÊ¾Àý
+ * è°ƒç”¨å­˜å‚¨è¿‡ç¨‹ç¤ºä¾‹
  *
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-5-19
+ * åˆ›å»ºæ—¥æœŸï¼š2013-5-19
  */
 public class CallProcedureDemo {
 
@@ -22,10 +22,10 @@ public class CallProcedureDemo {
 		Connection con = null;
 		try {
 			con = ConnectionFactory.create();
-			// CallableStatement ÊÇ×¨ÃÅÓÃÀ´µ÷ÓÃ´æ´¢¹ý³ÌµÄ
+			// CallableStatement æ˜¯ä¸“é—¨ç”¨æ¥è°ƒç”¨å­˜å‚¨è¿‡ç¨‹çš„
 			CallableStatement cstmt = con.prepareCall("CALL age_pro (?, ?)");
 			/*
-			 * age_pro´æ´¢¹ý³Ì¶¨Òå£º
+			 * age_proå­˜å‚¨è¿‡ç¨‹å®šä¹‰ï¼š
 			 * 
 			 * create procedure age_pro(IN age int,OUT errormsg varchar(20))
 			 * begin
@@ -34,19 +34,19 @@ public class CallProcedureDemo {
 			 * end if;
 			 * end
 			 */
-			cstmt.setInt(1, -1);// ÉèÖÃÊäÈë²ÎÊýÖµ
-			cstmt.registerOutParameter(2, Types.VARCHAR);// ×¢²áÊä³ö²ÎÊýÀàÐÍ
-			cstmt.executeQuery();// µ÷ÓÃ´æ´¢¹ý³Ì
+			cstmt.setInt(1, -1);// è®¾ç½®è¾“å…¥å‚æ•°å€¼
+			cstmt.registerOutParameter(2, Types.VARCHAR);// æ³¨å†Œè¾“å‡ºå‚æ•°ç±»åž‹
+			cstmt.executeQuery();// è°ƒç”¨å­˜å‚¨è¿‡ç¨‹
 			
-			String errorinfo = cstmt.getString(2);// »ñÈ¡Êä³ö²ÎÊýµÄÖµ
+			String errorinfo = cstmt.getString(2);// èŽ·å–è¾“å‡ºå‚æ•°çš„å€¼
 			cstmt.close();
 			System.out.println(errorinfo);
 			
 			/*
-			 * Èôµ÷ÓÃ´æ´¢¹ý³ÌÊ±±¨ÁËÏÂÃæµÄ´íÎó£º 
+			 * è‹¥è°ƒç”¨å­˜å‚¨è¿‡ç¨‹æ—¶æŠ¥äº†ä¸‹é¢çš„é”™è¯¯ï¼š 
 			 * ERROR 1370 (42000): execute command denied to user backupAccount@'localhost' for routine 'databaseName.spName' 
 			 * 
-			 * ½â¾ö°ì·¨ £º¶Ô¸ÃÕË»§ÊÚÓèÖ´ÐÐ´æ´¢¹ý³ÌµÄÈ¨ÏÞ 
+			 * è§£å†³åŠžæ³• ï¼šå¯¹è¯¥è´¦æˆ·æŽˆäºˆæ‰§è¡Œå­˜å‚¨è¿‡ç¨‹çš„æƒé™ 
 			 * 
 			 * mysql> grant execute on procedure databaseName.spName to 'backupAccount'@'localhost'; 
 			 * mysql> flush privileges; 

@@ -10,16 +10,16 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
 /**
- * LDAP·ÃÎÊÊ¾Àı
+ * LDAPè®¿é—®ç¤ºä¾‹
  * <p>
- * LDAP£¨Lightweight Directory Access Protocol£©£ºÇáÁ¿¼¶Ä¿Â¼·ÃÎÊĞ­Òé£¬ÊÇÒ»ÖÖ·Ö²ãÊı¾İ¿â¡£
+ * LDAPï¼ˆLightweight Directory Access Protocolï¼‰ï¼šè½»é‡çº§ç›®å½•è®¿é—®åè®®ï¼Œæ˜¯ä¸€ç§åˆ†å±‚æ•°æ®åº“ã€‚
  * <p>
- * Èç¹ûÓ¦ÓÃÊı¾İ×ñ´ÓÊ÷×´½á¹¹£¬ÇÒ¶Á²Ù×÷Ô¶Ô¶¶àÓÚĞ´²Ù×÷£¬ÄÇÃ´´ËÊ±Ó¦Ê×Ñ¡LDAP¶ø·Ç¹ØÏµÊı¾İ¿â¡£
- * LDAPÍ¨³£Ö÷ÒªÓÃÓÚÄ¿Â¼´æ´¢£¬ÇÒ¸ÃÄ¿Â¼°üº¬ÁËÖîÈçÓÃ»§Ãû¡¢ÃÜÂëºÍÈ¨ÏŞÖ®ÀàµÄÊı¾İ¡£
+ * å¦‚æœåº”ç”¨æ•°æ®éµä»æ ‘çŠ¶ç»“æ„ï¼Œä¸”è¯»æ“ä½œè¿œè¿œå¤šäºå†™æ“ä½œï¼Œé‚£ä¹ˆæ­¤æ—¶åº”é¦–é€‰LDAPè€Œéå…³ç³»æ•°æ®åº“ã€‚
+ * LDAPé€šå¸¸ä¸»è¦ç”¨äºç›®å½•å­˜å‚¨ï¼Œä¸”è¯¥ç›®å½•åŒ…å«äº†è¯¸å¦‚ç”¨æˆ·åã€å¯†ç å’Œæƒé™ä¹‹ç±»çš„æ•°æ®ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-16
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-16
  */
 public class LDAPAccessTest {
 
@@ -31,13 +31,13 @@ public class LDAPAccessTest {
 		String username = "user";
 		String password = "12345678";
 		
-		// ´æ´¢·ÃÎÊLDAP·şÎñÆ÷µÄÓÃ»§Ãû/ÃÜÂë
+		// å­˜å‚¨è®¿é—®LDAPæœåŠ¡å™¨çš„ç”¨æˆ·å/å¯†ç 
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.SECURITY_PRINCIPAL, username);
 		env.put(Context.SECURITY_CREDENTIALS, password);
 		
 		try {
-			// Ê¹ÓÃÈçÏÂÓï¾ä»ñµÃLDAPÄ¿Â¼µÄÉÏÏÂÎÄ
+			// ä½¿ç”¨å¦‚ä¸‹è¯­å¥è·å¾—LDAPç›®å½•çš„ä¸Šä¸‹æ–‡
 			DirContext initialContext = new InitialDirContext(env);
 			String ldapURL = "ldap://localhost:389";
 			DirContext context = (DirContext) initialContext.lookup(ldapURL);

@@ -1,11 +1,11 @@
 
-1£¬Ö´ĞĞ¾²Ì¬SQLÓï¾ä£¬Í¨³£Í¨¹ıStatementÊµÀıÊµÏÖ¡£
-2£¬Ö´ĞĞ¶¯Ì¬SQLÓï¾ä£¬Í¨³£Í¨¹ıPreparedStatementÊµÀıÊµÏÖ¡£
-3£¬Ö´ĞĞÊı¾İ¿â´æ´¢¹ı³Ì£¬Í¨³£Í¨¹ıCallableStatementÊµÀıÊµÏÖ¡£
+1ï¼Œæ‰§è¡Œé™æ€SQLè¯­å¥ï¼Œé€šå¸¸é€šè¿‡Statementå®ä¾‹å®ç°ã€‚
+2ï¼Œæ‰§è¡ŒåŠ¨æ€SQLè¯­å¥ï¼Œé€šå¸¸é€šè¿‡PreparedStatementå®ä¾‹å®ç°ã€‚
+3ï¼Œæ‰§è¡Œæ•°æ®åº“å­˜å‚¨è¿‡ç¨‹ï¼Œé€šå¸¸é€šè¿‡CallableStatementå®ä¾‹å®ç°ã€‚
 
 
-Ê¾Àı
+ç¤ºä¾‹
 
-1£¬Statement stmt = con.createStatement();
-2£¬PreparedStatement pstmt = con.prepareStatement(sql);
-3£¬CallableStatement stmt = con.prepareCall("call ...");
+1ï¼ŒStatement stmt = con.createStatement();
+2ï¼ŒPreparedStatement pstmt = con.prepareStatement(sql);
+3ï¼ŒCallableStatement stmt = con.prepareCall("call ...");

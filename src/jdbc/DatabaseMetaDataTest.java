@@ -11,82 +11,82 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
- * Êı¾İ¿âÔªÊı¾İ
+ * æ•°æ®åº“å…ƒæ•°æ®
  * <p>
- * JDBC¿ÉÒÔÌá¹©¹ØÓÚÊı¾İ¿â½á¹¹ºÍ±íµÄÏêÏ¸ĞÅÏ¢£º
- * ÀıÈç¿ÉÒÔ»ñÈ¡Ä³¸öÊı¾İ¿âµÄËùÓĞ±íµÄÁĞ±í£¬Ò²¿ÉÒÔ»ñµÃÄ³¸ö±íÖĞËùÓĞÁĞµÄÃû³Æ¼°ÆäÊı¾İÀàĞÍ¡£
- * ÕâĞ©Êı¾İ¿âµÄ½á¹¹ĞÅÏ¢¶Ô±àĞ´Êı¾İ¿â¹¤¾ßµÄ³ÌĞòÔ±¶øÑÔÊÇ¼«ÆäÓĞÓÃµÄ¡£
+ * JDBCå¯ä»¥æä¾›å…³äºæ•°æ®åº“ç»“æ„å’Œè¡¨çš„è¯¦ç»†ä¿¡æ¯ï¼š
+ * ä¾‹å¦‚å¯ä»¥è·å–æŸä¸ªæ•°æ®åº“çš„æ‰€æœ‰è¡¨çš„åˆ—è¡¨ï¼Œä¹Ÿå¯ä»¥è·å¾—æŸä¸ªè¡¨ä¸­æ‰€æœ‰åˆ—çš„åç§°åŠå…¶æ•°æ®ç±»å‹ã€‚
+ * è¿™äº›æ•°æ®åº“çš„ç»“æ„ä¿¡æ¯å¯¹ç¼–å†™æ•°æ®åº“å·¥å…·çš„ç¨‹åºå‘˜è€Œè¨€æ˜¯æå…¶æœ‰ç”¨çš„ã€‚
  * <p>
- * ÃèÊöÊı¾İ¿â»òÆä×é³É²¿·ÖµÄÊı¾İ³ÆÎªÔªÊı¾İ£¨Çø±ğÓÚÄÇĞ©´æÔÚÊı¾İ¿âÖĞµÄÊµ¼ÊÊı¾İ£©¡£
+ * æè¿°æ•°æ®åº“æˆ–å…¶ç»„æˆéƒ¨åˆ†çš„æ•°æ®ç§°ä¸ºå…ƒæ•°æ®ï¼ˆåŒºåˆ«äºé‚£äº›å­˜åœ¨æ•°æ®åº“ä¸­çš„å®é™…æ•°æ®ï¼‰ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-15
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-15
  */
 public class DatabaseMetaDataTest {
 	
 	/**
-	 * ¹²¿ÉÒÔ»ñµÃÈıÀàÔªÊı¾İ£¬ÈçÏÂÈı¸ö·½·¨¡£
+	 * å…±å¯ä»¥è·å¾—ä¸‰ç±»å…ƒæ•°æ®ï¼Œå¦‚ä¸‹ä¸‰ä¸ªæ–¹æ³•ã€‚
 	 */
 
 	/**
-	 * ¹ØÓÚÊı¾İ¿âµÄÔªÊı¾İ(DatabaseMetaData)
+	 * å…³äºæ•°æ®åº“çš„å…ƒæ•°æ®(DatabaseMetaData)
 	 */
 	public static void showDatabaseMetaData(Connection con) throws SQLException {
-		// DatabaseMetaData·â×°ÁËÓĞ¹ØÊı¾İ¿âÁ¬½ÓµÄÔªÊı¾İ
+		// DatabaseMetaDataå°è£…äº†æœ‰å…³æ•°æ®åº“è¿æ¥çš„å…ƒæ•°æ®
 		DatabaseMetaData meta = con.getMetaData();
-		// Àà±ğÃû³Æ£ºËü±ØĞëÓë´æ´¢ÔÚÊı¾İ¿âÖĞµÄÀà±ğÃû³ÆÆ¥Åä
+		// ç±»åˆ«åç§°ï¼šå®ƒå¿…é¡»ä¸å­˜å‚¨åœ¨æ•°æ®åº“ä¸­çš„ç±»åˆ«åç§°åŒ¹é…
 		String catalog = null;
-		// Ä£Ê½Ãû³ÆµÄÄ£Ê½£ºËü±ØĞëÓë´æ´¢ÔÚÊı¾İ¿âÖĞµÄÄ£Ê½Ãû³ÆÆ¥Åä
+		// æ¨¡å¼åç§°çš„æ¨¡å¼ï¼šå®ƒå¿…é¡»ä¸å­˜å‚¨åœ¨æ•°æ®åº“ä¸­çš„æ¨¡å¼åç§°åŒ¹é…
 		String schemaPattern = null;
-		// ±íÃû³ÆÄ£Ê½£»Ëü±ØĞëÓë´æ´¢ÔÚÊı¾İ¿âÖĞµÄ±íÃû³ÆÆ¥Åä
+		// è¡¨åç§°æ¨¡å¼ï¼›å®ƒå¿…é¡»ä¸å­˜å‚¨åœ¨æ•°æ®åº“ä¸­çš„è¡¨åç§°åŒ¹é…
 		String tableNamePattern = null;
-		// ±íÀàĞÍÃû³Æ£ºµäĞÍµÄÀàĞÍÎª "TABLE"¡¢"VIEW"¡¢"SYSTEM TABLE"¡¢"GLOBAL TEMPORARY"¡¢"LOCAL TEMPORARY"¡¢"ALIAS" ºÍ "SYNONYM"¡£ 
+		// è¡¨ç±»å‹åç§°ï¼šå…¸å‹çš„ç±»å‹ä¸º "TABLE"ã€"VIEW"ã€"SYSTEM TABLE"ã€"GLOBAL TEMPORARY"ã€"LOCAL TEMPORARY"ã€"ALIAS" å’Œ "SYNONYM"ã€‚ 
 		String[] types = new String[]{"TABLE"};
 		/**
-		 * ÏÂÃæµÄ·½·¨»á·µ»ØÊı¾İ¿âÖĞËùÓĞµÄ±íĞÅÏ¢£¬½á¹û¼¯°üÀ¨ËÄÁĞ£º
-		 * TABLE_CAT£º±íÄ¿Â¼£¬¶ÔÓ¦²ÎÊıÖĞµÄcatalog¡£
-		 * TABLE_SCHEM£º±í½á¹¹Ä£Ê½£¬¶ÔÓ¦²ÎÊıÖĞµÄschemaPattern¡£
-		 * TABLE_NAME£º±íÃû£¬¶ÔÓ¦²ÎÊıÖĞµÄtableNamePattern¡£
-		 * TABLE_TYPE£º±íÀàĞÍ£¬¶ÔÓ¦²ÎÊıÖĞµÄtypes¡£
+		 * ä¸‹é¢çš„æ–¹æ³•ä¼šè¿”å›æ•°æ®åº“ä¸­æ‰€æœ‰çš„è¡¨ä¿¡æ¯ï¼Œç»“æœé›†åŒ…æ‹¬å››åˆ—ï¼š
+		 * TABLE_CATï¼šè¡¨ç›®å½•ï¼Œå¯¹åº”å‚æ•°ä¸­çš„catalogã€‚
+		 * TABLE_SCHEMï¼šè¡¨ç»“æ„æ¨¡å¼ï¼Œå¯¹åº”å‚æ•°ä¸­çš„schemaPatternã€‚
+		 * TABLE_NAMEï¼šè¡¨åï¼Œå¯¹åº”å‚æ•°ä¸­çš„tableNamePatternã€‚
+		 * TABLE_TYPEï¼šè¡¨ç±»å‹ï¼Œå¯¹åº”å‚æ•°ä¸­çš„typesã€‚
 		 */
 		ResultSet tables = meta.getTables(catalog, schemaPattern, tableNamePattern, types);
-		// ´òÓ¡½á¹û¼¯Ô­ĞÅÏ¢£¬¿ÉºÍÉÏÃæµÄ±íĞÅÏ¢¶Ô±È
+		// æ‰“å°ç»“æœé›†åŸä¿¡æ¯ï¼Œå¯å’Œä¸Šé¢çš„è¡¨ä¿¡æ¯å¯¹æ¯”
 		showResultSetMetaData(tables);
 		
 		System.out.println("***tables begins***");
 		
 		while (tables.next()) {
-			// µÚÈıÁĞÊÇ±íÃû
+			// ç¬¬ä¸‰åˆ—æ˜¯è¡¨å
 			System.out.println(tables.getString(3) + "  ");
 		}
 		
 		System.out.println("***tables ends***");
 		
 		/**
-		 * Êı¾İ¿âÊÇ·Ç³£¸´ÔÓµÄ£¬SQL±ê×¼ÎªÊı¾İ¿âµÄ¶àÑùĞÔÌá¹©ÁËºÜ´óµÄ¿Õ¼ä¡£
-		 * DatabaseMetaDataÀàÖĞÓĞÉÏ°Ù¸ö·½·¨¿ÉÒÔÓÃÓÚ²éÑ¯Êı¾İ¿âµÄÏà¹ØĞÅÏ¢£¬°üÀ¨Ò»Ğ©ÆæÌØÃû×ÖµÄ·½·¨¡£
-		 * ÈçÏÂ£º
+		 * æ•°æ®åº“æ˜¯éå¸¸å¤æ‚çš„ï¼ŒSQLæ ‡å‡†ä¸ºæ•°æ®åº“çš„å¤šæ ·æ€§æä¾›äº†å¾ˆå¤§çš„ç©ºé—´ã€‚
+		 * DatabaseMetaDataç±»ä¸­æœ‰ä¸Šç™¾ä¸ªæ–¹æ³•å¯ä»¥ç”¨äºæŸ¥è¯¢æ•°æ®åº“çš„ç›¸å…³ä¿¡æ¯ï¼ŒåŒ…æ‹¬ä¸€äº›å¥‡ç‰¹åå­—çš„æ–¹æ³•ã€‚
+		 * å¦‚ä¸‹ï¼š
 		 */
 		meta.nullPlusNonNullIsNull();
 		/**
-		 * ÕâĞ©·½·¨Ö÷ÒªÕë¶ÔÓĞÌØÊâÒªÇóµÄ¸ß¼¶¿Í»§£¬ÓÈÆäÊÇÄÇĞ©ĞèÒª±àĞ´Éæ¼°¶à¸öÊı¾İ¿âÇÒ¾ß±¸¿ÉÒÆÖ²ĞÔµÄ³ÌĞòÔ±¡£
-		 * ±ÈÈçÏÂÃæµÄ·½·¨¿ÉÒÔ»ñÖª¸ÃÊı¾İ¿âÊÇ·ñÖ§³Ö¿É¹ö¶¯µÄ½á¹û¼¯¡£
+		 * è¿™äº›æ–¹æ³•ä¸»è¦é’ˆå¯¹æœ‰ç‰¹æ®Šè¦æ±‚çš„é«˜çº§å®¢æˆ·ï¼Œå°¤å…¶æ˜¯é‚£äº›éœ€è¦ç¼–å†™æ¶‰åŠå¤šä¸ªæ•°æ®åº“ä¸”å…·å¤‡å¯ç§»æ¤æ€§çš„ç¨‹åºå‘˜ã€‚
+		 * æ¯”å¦‚ä¸‹é¢çš„æ–¹æ³•å¯ä»¥è·çŸ¥è¯¥æ•°æ®åº“æ˜¯å¦æ”¯æŒå¯æ»šåŠ¨çš„ç»“æœé›†ã€‚
 		 */
 		meta.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE);
 		
-		// ·µ»ØÁ¬½ÓÊ¹ÓÃµÄJDBCÇı¶¯³ÌĞòÖ÷°æ±¾ºÅ
+		// è¿”å›è¿æ¥ä½¿ç”¨çš„JDBCé©±åŠ¨ç¨‹åºä¸»ç‰ˆæœ¬å·
 		System.out.println("JDBCMajorVersion=" + meta.getJDBCMajorVersion());
-		// ·µ»ØÁ¬½ÓÊ¹ÓÃµÄJDBCÇı¶¯³ÌĞò´Î°æ±¾ºÅ
+		// è¿”å›è¿æ¥ä½¿ç”¨çš„JDBCé©±åŠ¨ç¨‹åºæ¬¡ç‰ˆæœ¬å·
 		System.out.println("JDBCMinorVersion=" + meta.getJDBCMinorVersion());
-		// ·µ»ØÊı¾İ¿âµÄ×î´óÁ¬½ÓÊı
+		// è¿”å›æ•°æ®åº“çš„æœ€å¤§è¿æ¥æ•°
 		System.out.println("MaxConnections=" + meta.getMaxConnections());
-		// ·µ»Øµ¥¸öÊı¾İ¿âÁ¬½Ó¿ÉÍ¬Ê±´ò¿ªµÄÓï¾ä×î´óÖµ
+		// è¿”å›å•ä¸ªæ•°æ®åº“è¿æ¥å¯åŒæ—¶æ‰“å¼€çš„è¯­å¥æœ€å¤§å€¼
 		System.out.println("MaxStatements=" + meta.getMaxStatements());
 	}
 
 	/**
-	 * ¹ØÓÚ½á¹û¼¯µÄÔªÊı¾İ(ResultSetMetaData)
+	 * å…³äºç»“æœé›†çš„å…ƒæ•°æ®(ResultSetMetaData)
 	 */
 	public static void showResultSetMetaData(ResultSet rs) throws SQLException{
 		ResultSetMetaData meta = rs.getMetaData();
@@ -94,28 +94,28 @@ public class DatabaseMetaDataTest {
 	}
 
 	private static void showResultSetMetaData0(ResultSetMetaData meta) throws SQLException {
-		// ·µ»Ø½á¹û¼¯ÖĞÁĞÊı
+		// è¿”å›ç»“æœé›†ä¸­åˆ—æ•°
 		System.out.println("ColumnCount=" + meta.getColumnCount());
 		for (int i = 1; i <= meta.getColumnCount(); i++) {
-			// ·µ»ØÖ¸¶¨ÁĞÃû³Æ(ÁĞĞòºÅÊÇ´Ó1¿ªÊ¼¼ÆÊı)
+			// è¿”å›æŒ‡å®šåˆ—åç§°(åˆ—åºå·æ˜¯ä»1å¼€å§‹è®¡æ•°)
 			System.out.print("Column Name=" + meta.getColumnName(i));
-			// ·µ»ØÖ¸¶¨ÁĞµÄÀàĞÍ
+			// è¿”å›æŒ‡å®šåˆ—çš„ç±»å‹
 			System.out.print(",Column Type Name=" + meta.getColumnTypeName(i));
-			// ·µ»ØÖ¸¶¨ÁĞ¿í
+			// è¿”å›æŒ‡å®šåˆ—å®½
 			System.out.println(",Column Display Size=" + meta.getColumnDisplaySize(i));
 		}
 	}
 
 	/**
-	 * ¹ØÓÚÔ¤±àÒëÓï¾ä(PreparedStatement)²ÎÊıµÄÔªÊı¾İ
+	 * å…³äºé¢„ç¼–è¯‘è¯­å¥(PreparedStatement)å‚æ•°çš„å…ƒæ•°æ®
 	 */
 	public static void showDatabaseMetaData(PreparedStatement ps) throws SQLException{
 		
 		/**
-		 * »ñÈ¡°üº¬ÓĞ¹Ø ResultSet ¶ÔÏóÁĞĞÅÏ¢µÄ ResultSetMetaData ¶ÔÏó£¬ResultSet ¶ÔÏó½«ÔÚÖ´ĞĞ´Ë PreparedStatement ¶ÔÏóÊ±·µ»Ø¡£ 
-		 * ÒòÎª PreparedStatement ¶ÔÏó±»Ô¤±àÒë£¬ËùÒÔ²»±ØÖ´ĞĞ¾Í¿ÉÒÔÖªµÀËü½«·µ»ØµÄ ResultSet ¶ÔÏó¡£
-		 * Òò´Ë£¬¿ÉÒÔ¶Ô PreparedStatement ¶ÔÏóµ÷ÓÃ getMetaData ·½·¨£¬¶ø²»±ØµÈ´ıÖ´ĞĞ¸Ã¶ÔÏó£¬
-		 * È»ºóÔÙ¶Ô·µ»ØµÄ ResultSet ¶ÔÏóµ÷ÓÃ ResultSet.getMetaData ·½·¨¡£
+		 * è·å–åŒ…å«æœ‰å…³ ResultSet å¯¹è±¡åˆ—ä¿¡æ¯çš„ ResultSetMetaData å¯¹è±¡ï¼ŒResultSet å¯¹è±¡å°†åœ¨æ‰§è¡Œæ­¤ PreparedStatement å¯¹è±¡æ—¶è¿”å›ã€‚ 
+		 * å› ä¸º PreparedStatement å¯¹è±¡è¢«é¢„ç¼–è¯‘ï¼Œæ‰€ä»¥ä¸å¿…æ‰§è¡Œå°±å¯ä»¥çŸ¥é“å®ƒå°†è¿”å›çš„ ResultSet å¯¹è±¡ã€‚
+		 * å› æ­¤ï¼Œå¯ä»¥å¯¹ PreparedStatement å¯¹è±¡è°ƒç”¨ getMetaData æ–¹æ³•ï¼Œè€Œä¸å¿…ç­‰å¾…æ‰§è¡Œè¯¥å¯¹è±¡ï¼Œ
+		 * ç„¶åå†å¯¹è¿”å›çš„ ResultSet å¯¹è±¡è°ƒç”¨ ResultSet.getMetaData æ–¹æ³•ã€‚
 		 */
 		ResultSetMetaData rs = ps.getMetaData();
 		showResultSetMetaData0(rs);

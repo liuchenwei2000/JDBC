@@ -10,11 +10,11 @@ import java.sql.Statement;
 import jdbc.ConnectionFactory;
 
 /**
- * ÊÂÎñµÄÒ»°ã²Ù×÷¹ı³Ì
+ * äº‹åŠ¡çš„ä¸€èˆ¬æ“ä½œè¿‡ç¨‹
  *
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  *
- * ´´½¨ÈÕÆÚ£º2013-6-15
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-15
  */
 public class TransactionTest {
 
@@ -25,24 +25,24 @@ public class TransactionTest {
 		Connection con = null;
 		try {
 			con = ConnectionFactory.create();
-			// Ä¬ÈÏÇé¿öÏÂ£¬Êı¾İ¿âÁ¬½Ó´¦ÓÚ×Ô¶¯Ìá½»Ä£Ê½
-			// Ã¿¸öSQLÓï¾äÒ»µ©±»Ö´ĞĞ±ã±»Ìá½»¸øÊı¾İ¿â£¬Ë³ÀûÌá½»Ö®ºó¾ÍÎŞ·¨ÔÚ¶ÔÆä½øĞĞ»Ø¹ö²Ù×÷
+			// é»˜è®¤æƒ…å†µä¸‹ï¼Œæ•°æ®åº“è¿æ¥å¤„äºè‡ªåŠ¨æäº¤æ¨¡å¼
+			// æ¯ä¸ªSQLè¯­å¥ä¸€æ—¦è¢«æ‰§è¡Œä¾¿è¢«æäº¤ç»™æ•°æ®åº“ï¼Œé¡ºåˆ©æäº¤ä¹‹åå°±æ— æ³•åœ¨å¯¹å…¶è¿›è¡Œå›æ»šæ“ä½œ
 			boolean autoCommit = con.getAutoCommit();
 			System.out.println("autoCommit=" + autoCommit);
-			// ¹Ø±Õ×Ô¶¯Ìá½»Ä£Ê½
+			// å…³é—­è‡ªåŠ¨æäº¤æ¨¡å¼
 			con.setAutoCommit(false);
 			Statement st = con.createStatement();
 			
-			// ÏÂÃæ½«¶à´Î¸üĞÂ²Ù×÷ºÏ²¢ÎªÒ»¸öÊÂÎñ
+			// ä¸‹é¢å°†å¤šæ¬¡æ›´æ–°æ“ä½œåˆå¹¶ä¸ºä¸€ä¸ªäº‹åŠ¡
 			st.executeUpdate("update table1 set column1=1");
 			st.executeUpdate("update table2 set column2=2");
 			st.executeUpdate("update table3 set column3=3");
-			// Ö´ĞĞÁËËùÓĞÃüÁîÖ®ºó(ÒâÎ¶×ÅÊÂÎñ½áÊø)£¬µ÷ÓÃcommit
+			// æ‰§è¡Œäº†æ‰€æœ‰å‘½ä»¤ä¹‹å(æ„å‘³ç€äº‹åŠ¡ç»“æŸ)ï¼Œè°ƒç”¨commit
 			con.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
-				// Èç¹ûÊÂÎñ³öÏÖÁË´íÎóÔòĞèÒª»Ø¹ö¡£
+				// å¦‚æœäº‹åŠ¡å‡ºç°äº†é”™è¯¯åˆ™éœ€è¦å›æ»šã€‚
 				con.rollback();
 			} catch (SQLException e1) {
 				e1.printStackTrace();

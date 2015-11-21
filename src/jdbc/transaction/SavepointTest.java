@@ -11,13 +11,13 @@ import java.sql.Statement;
 import jdbc.ConnectionFactory;
 
 /**
- * ±£´æµã(save point)Ê¾Àı
+ * ä¿å­˜ç‚¹(save point)ç¤ºä¾‹
  * <p>
- * Ê¹ÓÃ±£´æµã¿ÉÒÔ¸üºÃµØ¿ØÖÆ»Ø¹ö²Ù×÷£¬´´½¨Ò»¸ö±£´æµãÒâÎ¶×ÅÉÔºóÖ»Ğè»Ø¹öµ½Õâ¸öµã¶ø·ÇÊÂÎñµÄ¿ªÊ¼¡£
+ * ä½¿ç”¨ä¿å­˜ç‚¹å¯ä»¥æ›´å¥½åœ°æ§åˆ¶å›æ»šæ“ä½œï¼Œåˆ›å»ºä¸€ä¸ªä¿å­˜ç‚¹æ„å‘³ç€ç¨ååªéœ€å›æ»šåˆ°è¿™ä¸ªç‚¹è€Œéäº‹åŠ¡çš„å¼€å§‹ã€‚
  *
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  *
- * ´´½¨ÈÕÆÚ£º2013-6-15
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-15
  */
 public class SavepointTest {
 
@@ -30,21 +30,21 @@ public class SavepointTest {
 			con = ConnectionFactory.create();
 			Statement st = con.createStatement();
 			st.executeUpdate("update table1 set column1=1");
-			// ´´½¨Ò»¸ö±£´æµã
+			// åˆ›å»ºä¸€ä¸ªä¿å­˜ç‚¹
 			Savepoint savepoint = con.setSavepoint();
 			st.executeUpdate("update table2 set column2=2");
 			
-			boolean someLogic = true;// Ä£ÄâÄ³ÖÖ³ö´íÇéĞÎ
+			boolean someLogic = true;// æ¨¡æ‹ŸæŸç§å‡ºé”™æƒ…å½¢
 			if(someLogic){
-				// »Ø¹öµ½savepointµÄµØ·½£¬²»Ó°ÏìsavepointÖ®Ç°µÄ²Ù×÷
+				// å›æ»šåˆ°savepointçš„åœ°æ–¹ï¼Œä¸å½±å“savepointä¹‹å‰çš„æ“ä½œ
 				con.rollback(savepoint);
 			}
-			// µ±Ê¹ÓÃÍê±£´æµãÍê³ÉÁËËùÓĞ²Ù×÷ºó£¬±ØĞëÊÍ·ÅËü¡£
+			// å½“ä½¿ç”¨å®Œä¿å­˜ç‚¹å®Œæˆäº†æ‰€æœ‰æ“ä½œåï¼Œå¿…é¡»é‡Šæ”¾å®ƒã€‚
 			con.releaseSavepoint(savepoint);
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
-				// ÕâÀï½«»á»Ø¹öµ½ÊÂÎñ¿ªÊ¼µÄµØ·½
+				// è¿™é‡Œå°†ä¼šå›æ»šåˆ°äº‹åŠ¡å¼€å§‹çš„åœ°æ–¹
 				con.rollback();
 			} catch (SQLException e1) {
 				e1.printStackTrace();

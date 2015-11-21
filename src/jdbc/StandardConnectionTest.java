@@ -6,11 +6,11 @@ package jdbc;
 import java.sql.*;
 
 /**
- * ±ê×¼Êı¾İ¿âÁ¬½ÓÊ¾Àı
+ * æ ‡å‡†æ•°æ®åº“è¿æ¥ç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-8-28
+ * åˆ›å»ºæ—¥æœŸï¼š2007-8-28
  */
 public class StandardConnectionTest {
 
@@ -18,29 +18,29 @@ public class StandardConnectionTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String driver = "com.mysql.jdbc.Driver";// Êı¾İ¿âÇı¶¯Æ÷Àà
-		String url = "jdbc:mysql://localhost:3306/mydb";// Êı¾İ¿âURL
-		String id = "liucw1";// µÇÂ½ÕÊºÅ
-		String pw = "woailo99";// ÃÜÂë
+		String driver = "com.mysql.jdbc.Driver";// æ•°æ®åº“é©±åŠ¨å™¨ç±»
+		String url = "jdbc:mysql://localhost:3306/mydb";// æ•°æ®åº“URL
+		String id = "liucw1";// ç™»é™†å¸å·
+		String pw = "woailo99";// å¯†ç 
 		
 		Connection connection = null;
 		try {
-			Class.forName(driver);// ¼ÓÔØÇı¶¯³ÌĞò£¬×ÔJDBC4.0¿ªÊ¼£¬ÕâĞĞ´úÂë¿ÉÒÔÊ¡ÂÔ
-			connection = DriverManager.getConnection(url, id, pw);// ´´½¨Á¬½Ó
+			Class.forName(driver);// åŠ è½½é©±åŠ¨ç¨‹åºï¼Œè‡ªJDBC4.0å¼€å§‹ï¼Œè¿™è¡Œä»£ç å¯ä»¥çœç•¥
+			connection = DriverManager.getConnection(url, id, pw);// åˆ›å»ºè¿æ¥
 
-			/** ²åÈëÊı¾İ£¬¸üĞÂ²Ù×÷Óë´ËÏàÍ¬£¬Ö»ÊÇsql²»Ò»Ñù */
-			String sql = "insert into person(pk_person,name,age) values ('person1000','ÕÅÈı',20)";
-			Statement stmt = connection.createStatement();// ´´½¨Statement¶ÔÏó
-			int rows = stmt.executeUpdate(sql);// Ö´ĞĞ¸üĞÂ£¬·µ»Ø±¾´Î²Ù×÷Ó°ÏìµÄĞĞÊı
+			/** æ’å…¥æ•°æ®ï¼Œæ›´æ–°æ“ä½œä¸æ­¤ç›¸åŒï¼Œåªæ˜¯sqlä¸ä¸€æ · */
+			String sql = "insert into person(pk_person,name,age) values ('person1000','å¼ ä¸‰',20)";
+			Statement stmt = connection.createStatement();// åˆ›å»ºStatementå¯¹è±¡
+			int rows = stmt.executeUpdate(sql);// æ‰§è¡Œæ›´æ–°ï¼Œè¿”å›æœ¬æ¬¡æ“ä½œå½±å“çš„è¡Œæ•°
 			stmt.close();
 			
-			/** ²éÑ¯Êı¾İ */
+			/** æŸ¥è¯¢æ•°æ® */
 			sql = "select * from person";
 			stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);// Ö´ĞĞ²éÑ¯²¢·µ»Ø½á¹û¼¯
-			// ´òÓ¡½á¹û¼¯ĞÅÏ¢
-			while (rs.next()) {// ¹â±êÅ²µ½ÏÂÒ»ĞĞ£¬ÈôÃ»ÓĞÔò·µ»Øfalse
-				System.out.print(rs.getString(1) + "  ");// ·µ»ØÖ¸¶¨ÁĞµÄÖµ£¬ÁĞ´Ó1¿ªÊ¼¼ÆÊı
+			ResultSet rs = stmt.executeQuery(sql);// æ‰§è¡ŒæŸ¥è¯¢å¹¶è¿”å›ç»“æœé›†
+			// æ‰“å°ç»“æœé›†ä¿¡æ¯
+			while (rs.next()) {// å…‰æ ‡æŒªåˆ°ä¸‹ä¸€è¡Œï¼Œè‹¥æ²¡æœ‰åˆ™è¿”å›false
+				System.out.print(rs.getString(1) + "  ");// è¿”å›æŒ‡å®šåˆ—çš„å€¼ï¼Œåˆ—ä»1å¼€å§‹è®¡æ•°
 				System.out.print(rs.getString(2) + "  ");
 				System.out.print(rs.getInt(3) + "  ");
 				System.out.println();
@@ -48,16 +48,16 @@ public class StandardConnectionTest {
 			rs.close();
 			stmt.close();
 			
-			/** É¾³ıÊı¾İ */
+			/** åˆ é™¤æ•°æ® */
 			sql = "delete from person where pk_person = 'person1000'";
 			stmt = connection.createStatement();
-			rows = stmt.executeUpdate(sql);// Ö´ĞĞ¸üĞÂ£¨É¾³ı£©£¬·µ»Ø±¾´Î²Ù×÷Ó°ÏìµÄĞĞÊı
+			rows = stmt.executeUpdate(sql);// æ‰§è¡Œæ›´æ–°ï¼ˆåˆ é™¤ï¼‰ï¼Œè¿”å›æœ¬æ¬¡æ“ä½œå½±å“çš„è¡Œæ•°
 			System.out.println(rows + " rows have been deleted.");
 			stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// ×îºóÒªÔÚfinally¿éÖĞ¹Ø±ÕÁ¬½Ó
+			// æœ€åè¦åœ¨finallyå—ä¸­å…³é—­è¿æ¥
 			if(connection != null) {
 				try {
 					connection.close();

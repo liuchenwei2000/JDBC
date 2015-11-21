@@ -10,22 +10,22 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Êı¾İ¿âÁ¬½Ó¹¤³§
+ * æ•°æ®åº“è¿æ¥å·¥å‚
  * <p>
- * Êµ¼ÊÉÏÊÇÍ¨¹ıÒ»¸öÅäÖÃÎÄ¼ş´æ´¢Êı¾İÔ´ĞÅÏ¢£¬±ãÓÚÒÔºóĞŞ¸Ä¡£
- * ±¾ÀıÖ»ÅäÖÃÁËÒ»¸öÊı¾İÔ´£¬Êµ¼ÊÉÏ£¬¿ÉÒÔÔÚÅäÖÃÎÄ¼şÖĞ×¢²á¶à¸öÊı¾İÔ´¡£
- * ÁíÍâ£¬±¾ÀàÖ±½Ó·µ»Ø Connecton ¶ÔÏó£¬Ö÷Á÷×ö·¨Ó¦¸ÃÊÇ·µ»ØÖ¸¶¨µÄÊı¾İÔ´£¨DataSource£©¶ÔÏó£¬ÔÙÓÉÊı¾İÔ´·µ»Ø Connection¡£
- * ÕâÑùµÄ²ßÂÔÊ¹µÃ³ÌĞòµÄÁé»îĞÔÔöÇ¿£¬ÍêÈ«¿ÉÒÔÖ»ĞŞ¸ÄÅäÖÃÎÄ¼ş¶øÎŞĞèĞŞ¸Ä´úÂë¡£
+ * å®é™…ä¸Šæ˜¯é€šè¿‡ä¸€ä¸ªé…ç½®æ–‡ä»¶å­˜å‚¨æ•°æ®æºä¿¡æ¯ï¼Œä¾¿äºä»¥åä¿®æ”¹ã€‚
+ * æœ¬ä¾‹åªé…ç½®äº†ä¸€ä¸ªæ•°æ®æºï¼Œå®é™…ä¸Šï¼Œå¯ä»¥åœ¨é…ç½®æ–‡ä»¶ä¸­æ³¨å†Œå¤šä¸ªæ•°æ®æºã€‚
+ * å¦å¤–ï¼Œæœ¬ç±»ç›´æ¥è¿”å› Connecton å¯¹è±¡ï¼Œä¸»æµåšæ³•åº”è¯¥æ˜¯è¿”å›æŒ‡å®šçš„æ•°æ®æºï¼ˆDataSourceï¼‰å¯¹è±¡ï¼Œå†ç”±æ•°æ®æºè¿”å› Connectionã€‚
+ * è¿™æ ·çš„ç­–ç•¥ä½¿å¾—ç¨‹åºçš„çµæ´»æ€§å¢å¼ºï¼Œå®Œå…¨å¯ä»¥åªä¿®æ”¹é…ç½®æ–‡ä»¶è€Œæ— éœ€ä¿®æ”¹ä»£ç ã€‚
  * <p>
- * ±¾ÀàÖ÷ÒªÊÇ·½±ãÆäËû¸÷Àà»ñµÃConnection¶ÔÏó£¬ÔöÇ¿ÆäËûÀà´úÂë¿É¶ÁĞÔ¡£
+ * æœ¬ç±»ä¸»è¦æ˜¯æ–¹ä¾¿å…¶ä»–å„ç±»è·å¾—Connectionå¯¹è±¡ï¼Œå¢å¼ºå…¶ä»–ç±»ä»£ç å¯è¯»æ€§ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-16
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-16
  */
 public class ConnectionFactory {
 
-	/** ÅäÖÃÎÄ¼şÂ·¾¶  */
+	/** é…ç½®æ–‡ä»¶è·¯å¾„  */
 	private static final String CONFIG_FILE = "config/datasource.properties";
 
 	private static String driver;
@@ -39,7 +39,7 @@ public class ConnectionFactory {
 	}
 
 	/**
-	 * ´´½¨Ò»¸öÊı¾İ¿âÁ¬½Ó
+	 * åˆ›å»ºä¸€ä¸ªæ•°æ®åº“è¿æ¥
 	 */
 	public static Connection create() throws SQLException {
 		return DriverManager.getConnection(url, username, password);
@@ -61,7 +61,7 @@ public class ConnectionFactory {
 		Properties settings = new Properties();
 		try {
 			FileInputStream in = new FileInputStream(CONFIG_FILE);
-			// ¼ÓÔØÅäÖÃÎÄ¼şĞÅÏ¢
+			// åŠ è½½é…ç½®æ–‡ä»¶ä¿¡æ¯
 			settings.load(in);
 		} catch (Exception e) {
 			e.printStackTrace();
