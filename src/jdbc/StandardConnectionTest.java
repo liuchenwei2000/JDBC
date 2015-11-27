@@ -19,7 +19,7 @@ public class StandardConnectionTest {
 	 */
 	public static void main(String[] args) {
 		String driver = "com.mysql.jdbc.Driver";// 数据库驱动器类
-		String url = "jdbc:mysql://localhost:3306/mydb";// 数据库URL
+		String url = "jdbc:mysql://localhost:3306/test";// 数据库URL
 		String id = "liucw1";// 登陆帐号
 		String pw = "woailo99";// 密码
 		
