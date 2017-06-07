@@ -3,7 +3,7 @@
  */
 package jdbc;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ import java.util.Properties;
 public class ConnectionFactory {
 
 	/** 配置文件路径  */
-	private static final String CONFIG_FILE = "config/datasource.properties";
+	private static final String CONFIG_FILE = "../datasource.properties";
 
 	private static String driver;
 	private static String url;
@@ -60,9 +60,9 @@ public class ConnectionFactory {
 	private static Properties load() {
 		Properties settings = new Properties();
 		try {
-			FileInputStream in = new FileInputStream(CONFIG_FILE);
+			InputStream inputStream = ConnectionFactory.class.getResourceAsStream(CONFIG_FILE);
 			// 加载配置文件信息
-			settings.load(in);
+			settings.load(inputStream);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

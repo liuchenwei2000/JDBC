@@ -1,0 +1,16 @@
+CREATE DATABASE test
+  DEFAULT CHARACTER SET utf8
+  COLLATE utf8_general_ci;
+
+USE test;
+
+CREATE TABLE IF NOT EXISTS
+  test_demo
+(
+  id   INT(11) NOT NULL AUTO_INCREMENT,
+  code VARCHAR(50),
+  ts   DATETIME,
+  PRIMARY KEY (id)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
